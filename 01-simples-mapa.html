@@ -64,6 +64,28 @@
             border-radius: 5px;
             overflow-x: auto;
         }
+
+        /* Estilo do link de download */
+        .download-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            /* Cor de fundo azul */
+            color: #ffffff;
+            /* Cor do texto branco */
+            text-decoration: none;
+            /* Remove o sublinhado */
+            border-radius: 5px;
+            /* Bordas arredondadas */
+            transition: background-color 0.3s;
+            /* Transição suave para a cor de fundo */
+        }
+
+        .download-link:hover {
+            background-color: #0056b3;
+            /* Cor de fundo ao passar o mouse */
+        }
     </style>
 
     <!-- Importando Leaflet -->
@@ -78,6 +100,7 @@
         <h1>Exemplo 01 - Criar um Simples Mapa com Leaflet</h1>
         <p>Este exemplo demonstra como inicializar um mapa interativo utilizando a biblioteca Leaflet.js.</p>
         <small>Publicado em: 05/03/2025</small>
+        <a href="01-simples-mapa.zip" download class="download-link">Baixar projeto .zip</a>
     </section>
 
     <!-- Mapa -->
@@ -102,16 +125,6 @@
         &lt;!-- Importando Leaflet --&gt;
         &lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /&gt;
         &lt;script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"&gt;&lt;/script&gt;
-            </code>
-        </pre>
-
-        <p>
-            Em seguida, inclua uma <code>div</code> com o atributo <code>id="map"</code>, onde o mapa será renderizado:
-        </p>
-
-        <pre>
-            <code>
-        &lt;div id="map" &lt;/div&gt;
             </code>
         </pre>
 

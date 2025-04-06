@@ -96,10 +96,11 @@
 
     <!-- Título e explicação -->
     <section class="info-container">
-        <h1>Exemplo 02 - Incluir um simples marcador (marker) com Leaflet</h1>
-        <p>Este exemplo demonstra como adicionar um marcador simpes em um mapa utilizando a biblioteca Leaflet.js.</p>
-        <small>Publicado em: 05/03/2025</small>
-        <a href="02-incluir-marcador.zip" download class="download-link">Baixar projeto .zip</a>
+        <h1>Exemplo 03 - Adicionar Popup em um marcador</h1>
+        <p>Este exemplo demonstra como adicionar um popup (balão) simples a um marcador em um mapa utilizando biblioteca
+            Leaflet.js</p>
+        <small>Publicado em: 09/03/2025</small>
+        <a href="03-incluir-popup.zip" download class="download-link">Baixar projeto .zip</a>
     </section>
 
     <!-- Mapa -->
@@ -166,8 +167,15 @@
                     attribution: '© OpenStreetMap contributors' // Atribuição aos colaboradores do OpenStreetMap  
                 }).addTo(map);  
 
-                // adicionando marcador marker 
+                // adicionando marcador  
                 var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+
+                // adicionar popup
+                marcador.bindPopup("Maracanã").openPopup();
+
+                // Observação: Se preferir que o evento seja exibido apenas ao clique do usuário, você pode remover o método openPopup().
+
+
             </code>
         </pre>
     </section>
@@ -175,14 +183,16 @@
     <!-- Inicialização do Mapa -->
     <script>
         function initMap() {
-            var map = L.map('map').setView([-2.186399, -79.893129], 4);
+            var map = L.map('map').setView([-22.912083551219038, -43.230211135673464], 15);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
             // adicionando marcador marker 
-            var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+            var marcador = L.marker([-22.912083551219038, -43.230211135673464]).addTo(map)
+
+            marcador.bindPopup("Maracanã").openPopup();
         }
 
         window.onload = () => {

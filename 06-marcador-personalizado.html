@@ -96,10 +96,10 @@
 
     <!-- Título e explicação -->
     <section class="info-container">
-        <h1>Exemplo 02 - Incluir um simples marcador (marker) com Leaflet</h1>
-        <p>Este exemplo demonstra como adicionar um marcador simpes em um mapa utilizando a biblioteca Leaflet.js.</p>
-        <small>Publicado em: 05/03/2025</small>
-        <a href="02-incluir-marcador.zip" download class="download-link">Baixar projeto .zip</a>
+        <h1>Exemplo 06 - Marcador Personalizado.</h1>
+        <p>Definir um novo ícone para o marcador</p>
+        <small>Publicado em: 16/03/2025</small>
+        <a href="06-marcador-personalizado.zip" download class="download-link">Baixar projeto .zip</a>
     </section>
 
     <!-- Mapa -->
@@ -141,7 +141,6 @@
             Agora, você está pronto para inicializar o mapa usando JavaScript!
         </p>
 
-
         <h3>2. Código CSS:</h3>
         <p>Defina largura e altura da tag que recebe o map.</p>
         <pre>
@@ -159,15 +158,30 @@
             <code>
                 
                 // Criando uma instância do mapa com coordenadas iniciais e nível de zoom  
-                var map = L.map('map').setView([-5, -45], 4);  
+                var map = L.map('map').setView([-20.319219106191916, -40.34190399728286], 14);  
 
                 // Adicionando uma camada de tiles do OpenStreetMap ao mapa  
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {  
                     attribution: '© OpenStreetMap contributors' // Atribuição aos colaboradores do OpenStreetMap  
                 }).addTo(map);  
 
-                // adicionando marcador marker 
-                var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+                
+                // definição do icone atribuindo o URL (caminho) , altura e largura
+
+                var meuIcon = L.icon({
+                    iconUrl: './06-marcador-personalizado/icone.png',
+                    iconSize: [40, 40]
+    
+                })
+                
+                    
+                // Criar marcador e atribuir o icone personalizado
+                var marcador_icone_personalizado = L.marker([-20.319219106191916, -40.34190399728286], { icon: meuIcon }).addTo(map)
+
+                // abrir o popup
+                marcador_icone_personalizado.bindPopup('PARQUE MOSCOSO - VITÓRIA/ES').openPopup();
+
+
             </code>
         </pre>
     </section>
@@ -175,14 +189,21 @@
     <!-- Inicialização do Mapa -->
     <script>
         function initMap() {
-            var map = L.map('map').setView([-2.186399, -79.893129], 4);
+            var map = L.map('map').setView([-20.319219106191916, -40.34190399728286], 17);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
-            // adicionando marcador marker 
-            var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+            var meuIcon = L.icon({
+                iconUrl: './06-marcador-personalizado/icone.png',
+                iconSize: [40, 40]
+
+            })
+
+            var marcador_icone_personalizado = L.marker([-20.319219106191916, -40.34190399728286], { icon: meuIcon }).addTo(map)
+            marcador_icone_personalizado.bindPopup('PARQUE MOSCOSO - VITÓRIA/ES').openPopup();
+
         }
 
         window.onload = () => {

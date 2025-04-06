@@ -96,10 +96,10 @@
 
     <!-- Título e explicação -->
     <section class="info-container">
-        <h1>Exemplo 02 - Incluir um simples marcador (marker) com Leaflet</h1>
-        <p>Este exemplo demonstra como adicionar um marcador simpes em um mapa utilizando a biblioteca Leaflet.js.</p>
-        <small>Publicado em: 05/03/2025</small>
-        <a href="02-incluir-marcador.zip" download class="download-link">Baixar projeto .zip</a>
+        <h1>Exemplo 04 - Adicionar vários marcadores no mapa</h1>
+        <p>Este exemplo demonstra como adicionar vários marcadores ao mapa com leaflet.js.</p>
+        <small>Publicado em: 09/03/2025</small>
+        <a href="04-incluir-varios-macarcores.zip" download class="download-link">Baixar projeto .zip</a>
     </section>
 
     <!-- Mapa -->
@@ -141,7 +141,6 @@
             Agora, você está pronto para inicializar o mapa usando JavaScript!
         </p>
 
-
         <h3>2. Código CSS:</h3>
         <p>Defina largura e altura da tag que recebe o map.</p>
         <pre>
@@ -159,15 +158,29 @@
             <code>
                 
                 // Criando uma instância do mapa com coordenadas iniciais e nível de zoom  
-                var map = L.map('map').setView([-5, -45], 4);  
+                var map = L.map('map').setView([-25.40208811334854, -49.26191632103104], 10);  
 
                 // Adicionando uma camada de tiles do OpenStreetMap ao mapa  
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {  
                     attribution: '© OpenStreetMap contributors' // Atribuição aos colaboradores do OpenStreetMap  
                 }).addTo(map);  
 
-                // adicionando marcador marker 
-                var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+                
+                // Criar um array com as coordenadas dos pontos e os respectivos textos dos popups
+                let listaOngsBichinhos =
+                    [
+                        [-25.42490812033615, -49.282110524588916, "Quatro Patas - Curitiba/PR"],
+                        [-25.43260691216823, -49.21886204464385, "Centro de Apoio à Fauna Silvestre (CAFS) - Curitiba/PR"],
+                        [-25.367622125829868, -49.219952025224195, "Sociedade Protetora dos Animais de Curitiba - Curitiba/PR"]
+                    ]
+    
+                // Realizar um loop para cada item do array e adicionar o marcador no mapa  
+                for (let i = 0; i < listaOngsBichinhos.length; i++) {
+                    const [coordenadaLat, coordenadaLng, texto] = listaOngsBichinhos[i]
+                    marcador = new L.marker([coordenadaLat, coordenadaLng]).bindPopup(texto).addTo(map);
+                }
+
+
             </code>
         </pre>
     </section>
@@ -175,14 +188,26 @@
     <!-- Inicialização do Mapa -->
     <script>
         function initMap() {
-            var map = L.map('map').setView([-2.186399, -79.893129], 4);
+            var map = L.map('map').setView([-25.40208811334854, -49.26191632103104], 12);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
-            // adicionando marcador marker 
-            var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+            // Criar um array com as coordenadas dos pontos e os respectivos textos dos popups
+            let listaOngsBichinhos =
+                [
+                    [-25.42490812033615, -49.282110524588916, "Quatro Patas - Curitiba/PR"],
+                    [-25.43260691216823, -49.21886204464385, "Centro de Apoio à Fauna Silvestre (CAFS) - Curitiba/PR"],
+                    [-25.367622125829868, -49.219952025224195, "Sociedade Protetora dos Animais de Curitiba - Curitiba/PR"]
+                ]
+
+            // Realizar um loop para cada item do array e adicionar o marcador no mapa  
+            for (let i = 0; i < listaOngsBichinhos.length; i++) {
+                const [coordenadaLat, coordenadaLng, texto] = listaOngsBichinhos[i]
+                marcador = new L.marker([coordenadaLat, coordenadaLng]).bindPopup(texto).addTo(map);
+            }
+
         }
 
         window.onload = () => {

@@ -96,10 +96,11 @@
 
     <!-- Título e explicação -->
     <section class="info-container">
-        <h1>Exemplo 02 - Incluir um simples marcador (marker) com Leaflet</h1>
-        <p>Este exemplo demonstra como adicionar um marcador simpes em um mapa utilizando a biblioteca Leaflet.js.</p>
-        <small>Publicado em: 05/03/2025</small>
-        <a href="02-incluir-marcador.zip" download class="download-link">Baixar projeto .zip</a>
+        <h1>Exemplo 05 - Adicionar estilo ao popup.</h1>
+        <p>Por padrão, a biblioteca Leaflet não aplica um estilo personalizado ao balão (popup). Neste exemplo, vamos
+            demonstrar como podemos estilizar o seu balão de forma personalizada.</p>
+        <small>Publicado em: 16/03/2025</small>
+        <a href="05-estilizar-popup.zip" download class="download-link">Baixar projeto .zip</a>
     </section>
 
     <!-- Mapa -->
@@ -141,7 +142,6 @@
             Agora, você está pronto para inicializar o mapa usando JavaScript!
         </p>
 
-
         <h3>2. Código CSS:</h3>
         <p>Defina largura e altura da tag que recebe o map.</p>
         <pre>
@@ -159,15 +159,30 @@
             <code>
                 
                 // Criando uma instância do mapa com coordenadas iniciais e nível de zoom  
-                var map = L.map('map').setView([-5, -45], 4);  
+                var map = L.map('map').setView([-41.13287055504581, -71.30238247539924], 14);  
 
                 // Adicionando uma camada de tiles do OpenStreetMap ao mapa  
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {  
                     attribution: '© OpenStreetMap contributors' // Atribuição aos colaboradores do OpenStreetMap  
                 }).addTo(map);  
 
-                // adicionando marcador marker 
-                var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+                
+                // criar estrutura HTML que recebe estilização para o bindpopup
+
+                const conteudoHtml = `&lt;div style="display: flex; align-items: center; gap: 10px;"&gt;  
+                    &lt;img src="https://lh5.googleusercontent.com/p/AF1QipNGQa11jB-ivnsMWy9IrKOXiEOsAzG4liG6ik9y=w408-h544-k-no" alt="Imagem" style="width: 80px; height: 80px; object-fit: cover;" /&gt;  
+                    &lt;p style="margin: 0;color:#F6DC43;background-color:#000080;"&gt;Catedral Nuestra Señora de Nahuel Huapi&lt;/p&gt;  
+                    &lt;/div&gt;`;   
+                
+                    
+                   
+                // criar marcaor
+                var marcador_Personalizado = L.marker([-41.13287055504581, -71.30238247539924]).addTo(map)
+                   
+                // atribuir ao marcador o conteudo html personalizado
+                marcador_Personalizado.bindPopup(conteudoHtml).openPopup();
+
+
             </code>
         </pre>
     </section>
@@ -175,14 +190,21 @@
     <!-- Inicialização do Mapa -->
     <script>
         function initMap() {
-            var map = L.map('map').setView([-2.186399, -79.893129], 4);
+            var map = L.map('map').setView([-41.13287055504581, -71.30238247539924], 14);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
-            // adicionando marcador marker 
-            var marcador = L.marker([-2.186399, -79.893129]).addTo(map)
+            const conteudoHtml = `  
+                <div style="display: flex; align-items: center; gap: 10px;">  
+                    <img src="https://lh5.googleusercontent.com/p/AF1QipNGQa11jB-ivnsMWy9IrKOXiEOsAzG4liG6ik9y=w408-h544-k-no" alt="Imagem" style="width: 80px; height: 80px; object-fit: cover;" />  
+                    <p style="margin: 0;color:#F6DC43;background-color:#000080;">Catedral Nuestra Señora de Nahuel Huapi</p>  
+                </div>  
+            `;
+            var POPUP_Personalizado = L.marker([-41.13287055504581, -71.30238247539924]).addTo(map)
+            POPUP_Personalizado.bindPopup(conteudoHtml).openPopup();
+
         }
 
         window.onload = () => {
